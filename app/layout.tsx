@@ -1,4 +1,5 @@
 import type {Metadata} from "next";
 import "./globals.css";
-export const metadata:Metadata={title:"JOKES — Our Friendship Story",description:"A cinematic digital memory book for the people who make life better."};
+const siteUrl="https://jokes-friendship-story.denzilsamuel718.chatgpt.site";
+export const metadata:Metadata={metadataBase:new URL(siteUrl),title:"JOKES — Our Friendship Story",description:"A cinematic digital memory book for the people who make life better.",openGraph:{title:"JOKES — Our Friendship Archive",description:"Thoughts, photographs and the little memories worth keeping forever.",url:siteUrl,siteName:"JOKES",type:"website",images:[{url:"/og.png",width:1680,height:943,alt:"JOKES friendship archive memory folder"}]},twitter:{card:"summary_large_image",title:"JOKES — Our Friendship Archive",description:"Thoughts, photographs and the little memories worth keeping forever.",images:["/og.png"]}};
 export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="en"><body>{children}</body></html>}
