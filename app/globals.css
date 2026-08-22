@@ -203,11 +203,11 @@ body{
   border:1px solid #fff;
   border-radius:10px;
   box-shadow:0 28px 70px #21150b36;
-  filter:saturate(.82) contrast(1.05);
+  filter:grayscale(1) contrast(1.04);
   transition:transform .45s cubic-bezier(.2,.8,.2,1),filter .35s,box-shadow .35s,top .35s;
 }
 .fan-card:hover{
-  filter:saturate(1.08) contrast(1.03);
+  filter:grayscale(0) saturate(1.08) contrast(1.03);
   box-shadow:0 40px 95px #20140b45;
 }
 .fan-card .portrait{
@@ -267,11 +267,8 @@ body{
   .people .friend{
     grid-column:span 2!important;
   }
-  .people .friend:nth-child(2),.people .friend:nth-child(4){
-    margin-top:54px;
-  }
-  .people .friend:nth-child(3){
-    margin-top:18px;
+  .people .friend:nth-child(2),.people .friend:nth-child(3),.people .friend:nth-child(4){
+    margin-top:0;
   }
 }
 .friend{
@@ -290,7 +287,9 @@ body{
   background:#181410;
 }
 .people .friend-photo .portrait img{
-  background:#181410!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  background:#fffaf2!important;
 }
 .friend-photo>b{
   width:42px;
@@ -353,24 +352,22 @@ body{
 .ending{
   min-height:820px;
   padding:125px 6vw 112px;
-  background:
-    radial-gradient(circle at 50% 14%,#fff3b7 0,transparent 22vw),
-    linear-gradient(135deg,#e95f37,#c95362 58%,#6944b5);
-  color:#fffaf1;
+  background:var(--orange);
+  color:var(--ink);
 }
 .ending .index{
-  color:#fff9;
+  color:var(--ink);
 }
 .orbit{
   transform:scale(1.05);
   filter:drop-shadow(0 22px 50px #3a160f38);
 }
 .orbit-center-heart{
-  color:#fffaf1;
+  color:var(--lime);
 }
 .ending h2{
   max-width:980px;
-  text-shadow:0 18px 54px #3d160f30;
+  text-shadow:none;
 }
 .pill.light{
   border-color:#fff;
@@ -644,4 +641,900 @@ input:focus,textarea:focus{
   .photo-static{
     border-width:6px!important;
   }
+}
+
+/* Review fixes: old color mood, no black photo mats, straight cards, hover color reveal. */
+.people .friend-photo,
+.special-photo,
+.corner-visual img,
+.photo-static .special-photo,
+.special-photo img{
+  background:#fffaf2!important;
+}
+.people .friend-photo .portrait img{
+  object-fit:cover!important;
+  object-position:center!important;
+  filter:none!important;
+  background:#fffaf2!important;
+}
+.friend:hover .friend-photo .portrait img,
+.card-image-button:focus-visible .portrait img,
+.friend-photo:hover .portrait img{
+  filter:none!important;
+}
+.fan-card{
+  filter:grayscale(1) contrast(1.04)!important;
+}
+.fan-card:hover,
+.fan-card:focus,
+.fan-card:focus-within{
+  filter:grayscale(0) saturate(1.08) contrast(1.03)!important;
+}
+@media(min-width:900px){
+  .people .friend{
+    margin-top:0!important;
+  }
+}
+.ending{
+  background:var(--orange)!important;
+  color:var(--ink)!important;
+}
+.ending .index,
+.ending h2{
+  color:var(--ink)!important;
+  text-shadow:none!important;
+}
+.people .friend-photo .denz-portrait img{
+  object-fit:cover!important;
+  object-position:63% center!important;
+}
+.hero{
+  padding-bottom:430px!important;
+}
+.fan{
+  bottom:92px!important;
+}
+.c1:hover,
+.c1:focus-within{
+  transform:rotate(-22deg) translate(-218px,8px)!important;
+  z-index:30!important;
+}
+
+/* Premium friend-card UX upgrade: clearer chapter action without changing content. */
+.people .friend{
+  position:relative;
+  border:1px solid #e4d7c3!important;
+  border-radius:10px!important;
+  background:linear-gradient(180deg,#fffaf2 0%,#f8f0e3 100%)!important;
+  box-shadow:
+    0 1px 0 #ffffff inset,
+    0 20px 60px #24180e1f!important;
+  transition:
+    transform .42s cubic-bezier(.2,.8,.2,1),
+    box-shadow .42s cubic-bezier(.2,.8,.2,1),
+    border-color .42s ease!important;
+}
+.people .friend:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  border-radius:inherit;
+  background:
+    linear-gradient(120deg,#ffffff70 0%,transparent 28%,transparent 72%,#ffffff38 100%);
+  opacity:.42;
+}
+.people .friend:hover,
+.people .friend:focus-within{
+  transform:translateY(-14px)!important;
+  border-color:#cbb99d!important;
+  box-shadow:
+    0 1px 0 #ffffff inset,
+    0 36px 90px #24180e32!important;
+}
+.people .friend-photo{
+  height:560px!important;
+  border-bottom:1px solid #eadfcd;
+}
+.people .friend-photo:after{
+  content:"";
+  position:absolute;
+  inset:auto 0 0;
+  height:34%;
+  pointer-events:none;
+  background:linear-gradient(180deg,transparent,#0f0b0714);
+  opacity:.8;
+  z-index:2;
+}
+.people .friend-photo>b{
+  z-index:4;
+  width:48px!important;
+  height:48px!important;
+  top:18px!important;
+  left:18px!important;
+  background:#fffaf2e8!important;
+  color:#15120f;
+  border:1px solid #ffffffb5!important;
+  box-shadow:0 14px 30px #110b061f!important;
+  backdrop-filter:blur(12px);
+}
+.people .friend-copy{
+  position:relative;
+  z-index:2;
+  min-height:250px;
+  padding:30px 28px 28px!important;
+  display:flex;
+  flex-direction:column;
+}
+.people .friend-copy h3{
+  font-size:clamp(28px,2.1vw,40px)!important;
+  letter-spacing:-.04em!important;
+  margin:0 0 12px!important;
+}
+.people .friend-copy p{
+  min-height:auto!important;
+  margin:0;
+  color:#73695d!important;
+  font-size:15px!important;
+}
+.people .friend-copy a{
+  position:relative;
+  margin-top:auto!important;
+  min-height:54px;
+  padding:0 8px 0 0!important;
+  border-top:1px solid #ded0b9!important;
+  display:flex!important;
+  align-items:center;
+  justify-content:space-between;
+  color:#17130f;
+  font-size:13px!important;
+  letter-spacing:.01em!important;
+  text-transform:none;
+}
+.people .friend-copy a span{
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#17130f;
+  color:#fffaf2;
+  box-shadow:0 10px 22px #17130f24;
+  transition:transform .28s ease,background .28s ease,color .28s ease;
+}
+.people .friend:hover .friend-copy a,
+.people .friend:focus-within .friend-copy a{
+  color:#000;
+  padding-left:2px!important;
+}
+.people .friend:hover .friend-copy a span,
+.people .friend:focus-within .friend-copy a span{
+  transform:translateX(4px);
+  background:var(--lime);
+  color:#17130f;
+}
+@media(max-width:1100px){
+  .people .friend-photo{
+    height:510px!important;
+  }
+  .people .friend-copy{
+    min-height:230px;
+  }
+}
+@media(max-width:580px){
+  .people .friend-photo{
+    height:500px!important;
+  }
+  .people .friend-copy{
+    min-height:210px;
+    padding:26px 24px!important;
+  }
+  .people .friend-copy a:before{
+    display:none;
+  }
+}
+
+/* Final card fix: keep the upgraded card shell, restore image framing, remove CTA overlap. */
+.people .friend-copy a:before,
+.people .friend:hover .friend-copy a:before,
+.people .friend:focus-within .friend-copy a:before{
+  content:none!important;
+  display:none!important;
+}
+.people .friend-copy a{
+  gap:16px!important;
+  white-space:nowrap;
+}
+.people .friend-copy a span{
+  flex:0 0 34px;
+}
+.people .friend-photo .thalaivar-portrait img{
+  object-fit:cover!important;
+  object-position:center top!important;
+}
+.people .friend-photo .deivs-portrait img{
+  object-fit:cover!important;
+  object-position:center 20%!important;
+}
+.people .friend-photo .denz-portrait img{
+  object-fit:cover!important;
+  object-position:63% center!important;
+}
+.people .friend-photo .eleven-portrait img{
+  object-fit:cover!important;
+  object-position:center 15%!important;
+}
+.people .friend-photo .jd-portrait img{
+  object-fit:cover!important;
+  object-position:center 25%!important;
+}
+
+/* Preserve the original friend-card image area after the CTA upgrade. */
+@media(min-width:1101px){
+  .people .friend-photo{
+    height:460px!important;
+  }
+}
+@media(max-width:1100px) and (min-width:851px){
+  .people .friend-photo{
+    height:470px!important;
+  }
+}
+@media(max-width:850px) and (min-width:581px){
+  .people .friend-photo{
+    height:560px!important;
+  }
+}
+@media(max-width:580px){
+  .people .friend-photo{
+    height:540px!important;
+  }
+}
+
+/* People-section card photos must stay in original color. Black-and-white is only for top fan cards. */
+.people .friend-photo .portrait img{
+  filter:none!important;
+  transition:filter .36s ease,transform .36s ease!important;
+}
+.people .friend:hover .friend-photo .portrait img,
+.people .friend:focus-within .friend-photo .portrait img,
+.people .friend-photo:hover .portrait img{
+  filter:none!important;
+}
+
+/* More than five homepage cards become a one-by-one chapter reel. */
+.fan.fan-reel{
+  left:0!important;
+  right:0;
+  bottom:70px!important;
+  width:100%!important;
+  height:340px!important;
+  padding:22px max(5vw,28px) 34px!important;
+  transform:none!important;
+  display:flex;
+  gap:18px;
+  overflow-x:auto;
+  overflow-y:visible;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:thin;
+  scrollbar-color:#c9baa4 transparent;
+}
+.fan.fan-reel:before,
+.fan.fan-reel:after{
+  content:"";
+  position:sticky;
+  z-index:6;
+  top:0;
+  width:8vw;
+  min-width:44px;
+  pointer-events:none;
+}
+.fan.fan-reel:before{
+  left:0;
+  margin-left:-5vw;
+  background:linear-gradient(90deg,#f9f7f2 0%,transparent 100%);
+}
+.fan.fan-reel:after{
+  right:0;
+  margin-right:-5vw;
+  background:linear-gradient(270deg,#f9f7f2 0%,transparent 100%);
+}
+.fan.fan-reel .fan-card{
+  position:relative!important;
+  left:auto!important;
+  top:auto!important;
+  flex:0 0 210px;
+  transform:none!important;
+  scroll-snap-align:center;
+  opacity:0;
+  animation:reel-card-in .5s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.fan.fan-reel .fan-card:hover,
+.fan.fan-reel .fan-card:focus,
+.fan.fan-reel .fan-card:focus-within{
+  top:auto!important;
+  transform:translateY(-10px)!important;
+}
+@keyframes reel-card-in{
+  from{
+    opacity:0;
+    transform:translateX(22px) scale(.96);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0) scale(1);
+  }
+}
+@media(max-width:850px){
+  .fan.fan-reel{
+    bottom:36px!important;
+    height:328px!important;
+    padding-inline:24px!important;
+  }
+  .fan.fan-reel .fan-card{
+    flex-basis:205px;
+  }
+}
+@media(max-width:580px){
+  .fan.fan-reel{
+    bottom:24px!important;
+    height:300px!important;
+    padding-inline:18px!important;
+    gap:14px;
+  }
+  .fan.fan-reel .fan-card{
+    flex-basis:188px;
+    height:270px;
+  }
+  .fan.fan-reel .fan-card .portrait{
+    height:202px;
+  }
+}
+
+/* Awwwards experiment layer: reversible visual polish only, no content/image changes. */
+@media (pointer:fine){
+  html{
+    cursor:none;
+  }
+  a,button,input,textarea,label{
+    cursor:none!important;
+  }
+  .cursor-ring,
+  .cursor-core{
+    position:fixed;
+    left:var(--mx,50vw);
+    top:var(--my,50vh);
+    z-index:9999;
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    mix-blend-mode:difference;
+  }
+  .cursor-ring{
+    width:42px;
+    height:42px;
+    border:1px solid #fff;
+    border-radius:50%;
+    transition:width .22s ease,height .22s ease,border-color .22s ease,opacity .22s ease;
+    opacity:.72;
+  }
+  .cursor-core{
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:0 0 0 5px #ffffff18;
+  }
+  body:has(a:hover) .cursor-ring,
+  body:has(button:hover) .cursor-ring,
+  body:has(label:hover) .cursor-ring{
+    width:68px;
+    height:68px;
+    border-color:var(--lime);
+  }
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:100;
+  pointer-events:none;
+  opacity:.065;
+  background-image:
+    linear-gradient(0deg,#000 1px,transparent 1px),
+    repeating-linear-gradient(90deg,#00000012 0 1px,transparent 1px 4px);
+  background-size:100% 4px,7px 100%;
+  mix-blend-mode:multiply;
+}
+
+.site-header{
+  position:fixed!important;
+  top:22px;
+  left:50%;
+  width:min(1320px,calc(100% - 44px))!important;
+  height:68px!important;
+  transform:translateX(-50%);
+  border:1px solid #ffffff78;
+  border-radius:999px;
+  background:#fff5e6c7;
+  backdrop-filter:blur(22px) saturate(1.22);
+  box-shadow:0 24px 70px #21170f1c;
+  animation:nav-drop .8s cubic-bezier(.18,.86,.25,1) both;
+}
+@keyframes nav-drop{
+  from{transform:translate(-50%,-28px);opacity:0}
+  to{transform:translate(-50%,0);opacity:1}
+}
+
+.hero{
+  background:
+    linear-gradient(115deg,#fffaf2 0%,#f1e6d7 42%,#fff8e8 73%,#e9e3d7 100%)!important;
+}
+.hero:after{
+  left:calc(var(--mx,50vw));
+  bottom:auto;
+  top:calc(var(--my,45vh));
+  width:520px;
+  height:520px;
+  transform:translate(-50%,-50%);
+  background:
+    conic-gradient(from 180deg at 50% 50%,#d8ff4835,#ef744635,#ffffff00,#79a58e30,#d8ff4835);
+  filter:blur(42px);
+  opacity:.9;
+}
+.hero h1{
+  transform:translate3d(calc((var(--px,.5) - .5) * -16px),calc((var(--py,.5) - .5) * -10px),0);
+  transition:transform .18s ease-out;
+}
+.hero h1 em{
+  position:relative;
+}
+.hero h1 em:after{
+  content:"";
+  position:absolute;
+  left:.06em;
+  right:.04em;
+  bottom:.03em;
+  height:.07em;
+  background:var(--lime);
+  z-index:-1;
+  transform-origin:left center;
+  animation:ink-swipe 1.1s .45s cubic-bezier(.18,.86,.25,1) both;
+}
+@keyframes ink-swipe{
+  from{transform:scaleX(0)}
+  to{transform:scaleX(1)}
+}
+
+.fan-card{
+  border-color:#ffffffd6!important;
+  background:linear-gradient(180deg,#fff 0%,#f8f4ed 100%)!important;
+  overflow:hidden;
+  will-change:transform,filter;
+}
+.fan-card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  background:linear-gradient(115deg,transparent 0 35%,#ffffffb0 48%,transparent 62% 100%);
+  transform:translateX(-130%);
+  transition:transform .65s cubic-bezier(.18,.86,.25,1);
+}
+.fan-card:hover:before,
+.fan-card:focus:before,
+.fan-card:focus-within:before{
+  transform:translateX(130%);
+}
+.fan-card:hover,
+.fan-card:focus,
+.fan-card:focus-within{
+  box-shadow:0 48px 110px #21150b4d,0 0 0 1px #ffffffcc inset!important;
+}
+.fan-card .portrait img{
+  transition:transform .7s cubic-bezier(.18,.86,.25,1),filter .35s ease;
+}
+.fan-card:hover .portrait img,
+.fan-card:focus .portrait img{
+  transform:scale(1.055);
+}
+
+.manifesto,
+.people,
+.memories,
+.ending{
+  position:relative;
+}
+.manifesto:before,
+.people:before,
+.memories:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,transparent 0 49.7%,#00000008 49.8% 50.2%,transparent 50.3% 100%);
+  background-size:18vw 100%;
+  opacity:.55;
+}
+
+.heading,
+.manifesto>div,
+.friend,
+.memory,
+.ending h2,
+.ending .orbit{
+  animation:section-rise linear both;
+  animation-timeline:view();
+  animation-range:entry 0% cover 34%;
+}
+@keyframes section-rise{
+  from{opacity:.18;transform:translateY(52px) scale(.985)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.people .friend{
+  perspective:1000px;
+  overflow:visible!important;
+}
+.people .friend:after{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  pointer-events:none;
+  border-radius:inherit;
+  background:
+    linear-gradient(120deg,transparent 0 18%,#ffffff82 36%,transparent 54% 100%);
+  opacity:0;
+  transform:translateX(-28%);
+  transition:opacity .35s ease,transform .55s cubic-bezier(.18,.86,.25,1);
+  z-index:3;
+}
+.people .friend:hover:after,
+.people .friend:focus-within:after{
+  opacity:.8;
+  transform:translateX(28%);
+}
+.people .friend:hover{
+  transform:translateY(-16px) rotateX(1.4deg) rotateY(calc((var(--px,.5) - .5) * 4deg))!important;
+}
+.people .friend-photo .portrait img{
+  filter:none!important;
+}
+.people .friend:hover .friend-photo .portrait img{
+  filter:none!important;
+  transform:scale(1.035);
+}
+.people .friend-copy a{
+  overflow:hidden;
+}
+.people .friend-copy a:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:2px;
+  background:var(--orange);
+  transform:scaleX(0);
+  transform-origin:left center;
+  transition:transform .32s ease;
+}
+.people .friend:hover .friend-copy a:after,
+.people .friend:focus-within .friend-copy a:after{
+  transform:scaleX(1);
+}
+
+.memory{
+  transition:background .35s ease,padding-inline .35s ease,transform .35s ease;
+}
+.memory:hover{
+  background:#ffffff08;
+  padding-inline:22px;
+  transform:translateX(8px);
+}
+.memory:hover .portrait img{
+  transform:scale(1.045);
+}
+.memory .portrait img{
+  transition:transform .55s cubic-bezier(.18,.86,.25,1);
+}
+
+.orbit{
+  animation:orbit-float 4.5s ease-in-out infinite,section-rise linear both;
+  animation-timeline:auto,view();
+  animation-range:normal,entry 0% cover 34%;
+}
+@keyframes orbit-float{
+  0%,100%{transform:translateY(0) scale(1.05)}
+  50%{transform:translateY(-12px) scale(1.08)}
+}
+.ending .pill.light{
+  transition:transform .28s cubic-bezier(.18,.86,.25,1),box-shadow .28s ease;
+}
+.ending .pill.light:hover{
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:0 22px 50px #32130833;
+}
+
+.photo-lightbox{
+  backdrop-filter:blur(22px) saturate(1.15);
+}
+.photo-lightbox figure{
+  animation:lightbox-pop .35s cubic-bezier(.18,.86,.25,1) both;
+}
+@keyframes lightbox-pop{
+  from{opacity:0;transform:translateY(24px) scale(.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+@media(max-width:850px){
+  .site-header{
+    top:14px;
+    width:calc(100% - 24px)!important;
+  }
+  .hero h1{
+    transform:none;
+  }
+  .cursor-ring,
+  .cursor-core{
+    display:none;
+  }
+  .memory:hover{
+    padding-inline:0;
+    transform:none;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,
+  *:before,
+  *:after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.001ms!important;
+  }
+}
+
+/* Final 20% polish: no global line texture, cleaner cards, premium text motion. */
+body:before,
+.manifesto:before,
+.people:before,
+.memories:before{
+  content:none!important;
+  display:none!important;
+}
+
+.people .friend{
+  overflow:hidden!important;
+  background:
+    linear-gradient(180deg,#fffaf2 0%,#f8efe1 100%)!important;
+  box-shadow:
+    0 1px 0 #ffffff inset,
+    0 18px 50px #27180d1c!important;
+  transition:
+    transform .42s cubic-bezier(.18,.86,.25,1),
+    box-shadow .42s ease,
+    border-color .42s ease,
+    background .42s ease!important;
+}
+.people .friend:after{
+  content:none!important;
+  display:none!important;
+}
+.people .friend:hover,
+.people .friend:focus-within{
+  transform:translateY(-12px)!important;
+  background:
+    radial-gradient(circle at 50% 0%,#ffffff 0%,#fff8ee 42%,#f5ead9 100%)!important;
+  border-color:#d7c4a5!important;
+  box-shadow:
+    0 1px 0 #ffffff inset,
+    0 34px 80px #2e1d102b,
+    0 0 0 1px #ffffffd6 inset!important;
+}
+.people .friend-photo:after{
+  background:
+    linear-gradient(180deg,transparent 48%,#140d0712 100%)!important;
+  opacity:.42!important;
+}
+.people .friend-photo .portrait{
+  transform:none!important;
+}
+.people .friend-photo .portrait img{
+  filter:none!important;
+  transform:scale(1)!important;
+  transition:transform .7s cubic-bezier(.18,.86,.25,1),filter .35s ease!important;
+}
+.people .friend:hover .friend-photo .portrait img,
+.people .friend:focus-within .friend-photo .portrait img{
+  filter:none!important;
+  transform:scale(1.022)!important;
+}
+.people .friend-photo>b{
+  transition:
+    transform .45s cubic-bezier(.18,.86,.25,1),
+    background .35s ease,
+    box-shadow .35s ease!important;
+}
+.people .friend:hover .friend-photo>b,
+.people .friend:focus-within .friend-photo>b{
+  transform:translateY(-4px) scale(1.03)!important;
+  background:#fffaf2f4!important;
+  box-shadow:0 18px 36px #140d071c!important;
+}
+.people .friend-copy{
+  background:
+    linear-gradient(180deg,#fffaf2 0%,#f7eedf 100%);
+}
+.people .friend-copy a:after{
+  height:1px!important;
+  background:linear-gradient(90deg,var(--orange),var(--lime))!important;
+}
+
+.manifesto h2,
+.heading h2,
+.ending h2{
+  animation:headline-reveal linear both!important;
+  animation-timeline:view()!important;
+  animation-range:entry -8% cover 42%!important;
+}
+.manifesto div>p,
+.hero>p,
+.friend-copy h3,
+.friend-copy p,
+.friend-copy a,
+.memory small,
+.memory h3,
+.memory blockquote,
+footer p{
+  animation:copy-reveal linear both!important;
+  animation-timeline:view()!important;
+  animation-range:entry 0% cover 28%!important;
+}
+.index,
+.eyebrow{
+  animation:micro-reveal linear both!important;
+  animation-timeline:view()!important;
+  animation-range:entry 0% cover 24%!important;
+}
+@keyframes headline-reveal{
+  from{
+    opacity:0;
+    transform:translateY(42px);
+    filter:blur(14px);
+    clip-path:inset(18% 0 0 0);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+    filter:blur(0);
+    clip-path:inset(0 0 0 0);
+  }
+}
+@keyframes copy-reveal{
+  from{
+    opacity:0;
+    transform:translateY(22px);
+    filter:blur(8px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+    filter:blur(0);
+  }
+}
+@keyframes micro-reveal{
+  from{
+    opacity:0;
+    transform:translateY(12px);
+    letter-spacing:.32em;
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+    letter-spacing:.22em;
+  }
+}
+
+@media(max-width:850px){
+  .manifesto h2,
+  .heading h2,
+  .ending h2,
+  .manifesto div>p,
+  .hero>p,
+  .friend-copy h3,
+  .friend-copy p,
+  .friend-copy a,
+  .memory small,
+  .memory h3,
+  .memory blockquote,
+  footer p,
+  .index,
+  .eyebrow{
+    animation-range:entry 0% cover 20%!important;
+  }
+  .people .friend:hover,
+  .people .friend:focus-within{
+    transform:translateY(-6px)!important;
+  }
+}
+
+/* Sharp text motion: no blur, readable throughout the scroll reveal. */
+@keyframes headline-reveal{
+  from{
+    opacity:.86;
+    transform:translateY(34px);
+    filter:none;
+    clip-path:none;
+  }
+  55%{
+    opacity:1;
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+    filter:none;
+    clip-path:none;
+  }
+}
+@keyframes copy-reveal{
+  from{
+    opacity:.84;
+    transform:translateY(18px);
+    filter:none;
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+    filter:none;
+  }
+}
+
+.manifesto h2,
+.heading h2,
+.ending h2{
+  clip-path:none!important;
+  overflow:visible!important;
+  padding-bottom:.14em;
+}
+.ending h2{
+  line-height:1.02!important;
+}
+
+/* People cards: borderless, neutral, image-led. */
+.people .friend{
+  border:0!important;
+  border-image:none!important;
+  outline:0!important;
+  border-radius:8px!important;
+  background:#fffaf2!important;
+  box-shadow:
+    0 1px 0 #ffffff inset,
+    0 18px 50px #26170c18!important;
+}
+.people .friend:hover,
+.people .friend:focus-within{
+  transform:translateY(-10px)!important;
+  border:0!important;
+  border-image:none!important;
+  outline:0!important;
+  box-shadow:
+    0 1px 0 #ffffff inset,
+    0 30px 74px #26170c24!important;
+}
+.people .friend-photo,
+.people .friend-copy a,
+.people .friend-photo>b{
+  border:0!important;
+}
+.people .friend-photo>b{
+  color:#15120f!important;
+  box-shadow:0 12px 28px #120b0618!important;
+}
+.people .friend-copy h3{
+  color:#171613!important;
 }

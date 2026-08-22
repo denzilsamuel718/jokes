@@ -1,5 +1,5 @@
 "use client";
-/* eslint-disable no-empty, react-hooks/set-state-in-effect, jsx-a11y/no-noninteractive-element-to-interactive-role */
+/* eslint-disable no-empty, react-hooks/set-state-in-effect, jsx-a11y/no-noninteractive-element-to-interactive-role, @next/next/no-img-element */
 import {KeyboardEvent,useEffect,useState} from "react";
 type Friend={id:number;name:string;nickname:string;note:string;memory:string;image?:string;specialImage?:string;memoryImage?:string;chapterImage?:string;cornerImage?:string;color:string};
 type Story={group:string;friends:Friend[]};
