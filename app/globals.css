@@ -993,47 +993,6 @@ input:focus,textarea:focus{
 }
 
 /* Awwwards experiment layer: reversible visual polish only, no content/image changes. */
-@media (pointer:fine){
-  html{
-    cursor:none;
-  }
-  a,button,input,textarea,label{
-    cursor:none!important;
-  }
-  .cursor-ring,
-  .cursor-core{
-    position:fixed;
-    left:var(--mx,50vw);
-    top:var(--my,50vh);
-    z-index:9999;
-    pointer-events:none;
-    transform:translate(-50%,-50%);
-    mix-blend-mode:difference;
-  }
-  .cursor-ring{
-    width:42px;
-    height:42px;
-    border:1px solid #fff;
-    border-radius:50%;
-    transition:width .22s ease,height .22s ease,border-color .22s ease,opacity .22s ease;
-    opacity:.72;
-  }
-  .cursor-core{
-    width:5px;
-    height:5px;
-    border-radius:50%;
-    background:#fff;
-    box-shadow:0 0 0 5px #ffffff18;
-  }
-  body:has(a:hover) .cursor-ring,
-  body:has(button:hover) .cursor-ring,
-  body:has(label:hover) .cursor-ring{
-    width:68px;
-    height:68px;
-    border-color:var(--lime);
-  }
-}
-
 body:before{
   content:"";
   position:fixed;
@@ -1277,10 +1236,6 @@ body:before{
   }
   .hero h1{
     transform:none;
-  }
-  .cursor-ring,
-  .cursor-core{
-    display:none;
   }
   .memory:hover{
     padding-inline:0;
