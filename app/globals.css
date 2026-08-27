@@ -1493,3 +1493,25 @@ footer p{
 .people .friend-copy h3{
   color:#171613!important;
 }
+
+/* Keep the native cursor visible on every page, including all chapter views. */
+html,
+body,
+body *{
+  cursor:default!important;
+}
+a,
+button,
+label,
+[role="button"],
+.paper{
+  cursor:pointer!important;
+}
+input,
+textarea,
+[contenteditable="true"]{
+  cursor:text!important;
+}
+button:disabled{
+  cursor:not-allowed!important;
+}

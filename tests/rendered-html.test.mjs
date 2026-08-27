@@ -198,3 +198,11 @@ test("supports eleven homepage fan cards without changing the five-card fan", as
   assert.match(css, /\.fan\.fan-reel/);
   assert.match(css, /scroll-snap-type:x mandatory/);
 });
+
+test("keeps the native cursor visible across home and chapter pages", async () => {
+  const css = await readFile(new URL("app/globals.css", root), "utf8");
+
+  assert.doesNotMatch(css, /cursor\s*:\s*none/);
+  assert.match(css, /html,\s*body,\s*body \*\{\s*cursor:default!important/);
+  assert.match(css, /\[role="button"\],\s*\.paper\{\s*cursor:pointer!important/);
+});
